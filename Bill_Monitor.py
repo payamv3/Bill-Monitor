@@ -191,28 +191,28 @@ if st.sidebar.button("Reset All Data"):
     st.session_state["search_results"] = pd.DataFrame()
     st.sidebar.success("All data reset for this session.")
 
-with st.sidebar.expander("➕ Add Bill Manually", expanded=True):
-    state_full = st.selectbox("State", options=[""] + sorted(STATE_ABBR.keys()))
-    bill_input = st.text_input("Bill (e.g., HB123)")
-    if st.button("Add this Bill"):
-        if not state_full or not bill_input:
-            st.sidebar.error("Please specify both a state and a bill number.")
-        else:
-            state_abbr = STATE_ABBR.get(state_full)
-            bill_id, _ = search_bill_id(state_abbr, clean_bill(bill_input, state_full), state_full)
-            if not bill_id:
-                st.sidebar.warning(f"No results found for {bill_input}")
-            else:
-                detail = get_bill(bill_id)
-                if detail:
-                    flat_row, summary_row = process_bill(detail)
-                    st.session_state["flat_data"] = pd.concat(
-                        [st.session_state["flat_data"], pd.DataFrame([flat_row])], ignore_index=True
-                    )
-                    st.session_state["summary_data"] = pd.concat(
-                        [st.session_state["summary_data"], pd.DataFrame([summary_row])], ignore_index=True
-                    )
-                    st.sidebar.success(f"Added {state_abbr} {summary_row['bill_number']}")
+# with st.sidebar.expander("➕ Add Bill Manually", expanded=True):
+#     state_full = st.selectbox("State", options=[""] + sorted(STATE_ABBR.keys()))
+#     bill_input = st.text_input("Bill (e.g., HB123)")
+#     if st.button("Add this Bill"):
+#         if not state_full or not bill_input:
+#             st.sidebar.error("Please specify both a state and a bill number.")
+#         else:
+#             state_abbr = STATE_ABBR.get(state_full)
+#             bill_id, _ = search_bill_id(state_abbr, clean_bill(bill_input, state_full), state_full)
+#             if not bill_id:
+#                 st.sidebar.warning(f"No results found for {bill_input}")
+#             else:
+#                 detail = get_bill(bill_id)
+#                 if detail:
+#                     flat_row, summary_row = process_bill(detail)
+#                     st.session_state["flat_data"] = pd.concat(
+#                         [st.session_state["flat_data"], pd.DataFrame([flat_row])], ignore_index=True
+#                     )
+#                     st.session_state["summary_data"] = pd.concat(
+#                         [st.session_state["summary_data"], pd.DataFrame([summary_row])], ignore_index=True
+#                     )
+#                     st.sidebar.success(f"Added {state_abbr} {summary_row['bill_number']}")
 
 with st.sidebar.expander("🔎 Search by Keyword"):
     kw_state = st.selectbox("Filter state", options=["All"] + sorted(STATE_ABBR.keys()))
