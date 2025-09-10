@@ -243,7 +243,7 @@ with st.sidebar.expander("🔎 Search by Keyword"):
 # Main content
 # -------------------------
 st.title("Bill Tracker")
-st.subtitle("Resuslt will display here, you can select and add multiple results to view a breakdown of sponsorships across party lines"
+st.subtitle("Resuslt will display here, you can select and add multiple results to view a breakdown of sponsorships across party lines")
 
 summary_df = derive_dates(st.session_state["summary_data"].copy()) if not st.session_state["summary_data"].empty else pd.DataFrame()
 
