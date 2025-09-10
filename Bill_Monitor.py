@@ -183,6 +183,19 @@ def derive_dates(df):
 # -------------------------
 # Sidebar: Add/Search + Reset
 # -------------------------
+st.sidebar.markdown(
+    """
+**Bill Tracker**
+
+Interactive dashboard to explore bills across states.  
+Filter by state, to inspect timelines, sponsor balance, and details.
+
+_A small project by Payam Saeedi_
+"""
+)
+
+st.sidebar.markdown("---")
+
 st.sidebar.title("Add & Search Bills")
 
 if st.sidebar.button("Reset All Data"):
@@ -230,6 +243,7 @@ with st.sidebar.expander("🔎 Search by Keyword"):
 # Main content
 # -------------------------
 st.title("Bill Tracker")
+st.subtitle("Resuslt will display here, you can select and add multiple results to view a breakdown of sponsorships across party lines"
 
 summary_df = derive_dates(st.session_state["summary_data"].copy()) if not st.session_state["summary_data"].empty else pd.DataFrame()
 
