@@ -273,7 +273,7 @@ if not st.session_state["search_results"].empty:
         summary_df = derive_dates(st.session_state["summary_data"].copy())
 
 if summary_df.empty:
-    st.info("No bills yet. Add manually or via search.")
+    st.info("No bills yet. Add manually via search.")
     st.stop()
 
 # -------------------------
